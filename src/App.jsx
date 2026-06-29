@@ -8,6 +8,7 @@ import Jobs from "./Jobs"
 import Events from "./Events"
 import About from "./About"
 import PrivacyPolicy from "./PrivacyPolicy"
+import Login from "./Pages/Login"
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/events" element={<Events />}/>
           <Route path="/about" element={<About />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
         <Footer />
       </BrowserRouter>

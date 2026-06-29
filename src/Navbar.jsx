@@ -207,9 +207,10 @@ const Navbar = () => {
             </>
           ) : (
             <>
-            <button className="btn bg-black text-white border-black rounded-full">
+            <Link to="/login"> <button className="btn bg-black text-white border-black rounded-full">
               Login
             </button>
+            </Link>
 
               <button className="btn btn-secondary rounded-full px-6">
                 Join Free
