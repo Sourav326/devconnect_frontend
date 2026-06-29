@@ -116,7 +116,7 @@ const Reviews = () => {
 
                         </div>
 
-                        <button className="btn btn-sm btn-outline rounded-full">
+                        <button className="btn btn-dash btn-secondary rounded-full">
                         View Profile →
                         </button>
 

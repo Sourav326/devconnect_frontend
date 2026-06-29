@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 const Footer = () => {
     return (
       <footer className="bg-slate-50 border-t border-slate-200 pt-10">
@@ -9,7 +10,7 @@ const Footer = () => {
   
             <div className="lg:col-span-2">
   
-              <h2 className="text-3xl font-bold text-indigo-600">
+              <h2 className="text-3xl font-bold text-secondary">
                 DevConnect
               </h2>
   
@@ -19,25 +20,7 @@ const Footer = () => {
                 open source and grow your career together.
               </p>
   
-              <div className="flex gap-4 mt-6">
-  
-                <button className="btn btn-circle btn-outline btn-sm">
-                  🌐
-                </button>
-  
-                <button className="btn btn-circle btn-outline btn-sm">
-                  🐙
-                </button>
-  
-                <button className="btn btn-circle btn-outline btn-sm">
-                  💼
-                </button>
-  
-                <button className="btn btn-circle btn-outline btn-sm">
-                  🐦
-                </button>
-  
-              </div>
+             
   
             </div>
   
@@ -52,33 +35,27 @@ const Footer = () => {
               <ul className="space-y-3 text-gray-600">
   
                 <li>
-                  <a className="hover:text-indigo-600">
+                  <Link to="/discover" className="hover:text-indigo-600">
                     Discover Developers
-                  </a>
+                  </Link>
                 </li>
   
                 <li>
-                  <a className="hover:text-indigo-600">
+                  <Link to="/projects" className="hover:text-indigo-600">
                     Find Projects
-                  </a>
+                  </Link>
                 </li>
   
                 <li>
-                  <a className="hover:text-indigo-600">
-                    Communities
-                  </a>
-                </li>
-  
-                <li>
-                  <a className="hover:text-indigo-600">
+                  <Link to="/events" className="hover:text-indigo-600">
                     Events
-                  </a>
+                  </Link>
                 </li>
   
                 <li>
-                  <a className="hover:text-indigo-600">
+                  <Link to="/jobs" className="hover:text-indigo-600">
                     Jobs
-                  </a>
+                  </Link>
                 </li>
   
               </ul>
@@ -119,11 +96,11 @@ const Footer = () => {
   
               <ul className="space-y-3 text-gray-600">
   
-                <li><a className="hover:text-indigo-600">About</a></li>
+                <li><Link to="/about" className="hover:text-indigo-600">About</Link></li>
   
                 <li><a className="hover:text-indigo-600">Contact</a></li>
   
-                <li><a className="hover:text-indigo-600">Privacy Policy</a></li>
+                <li><Link to="privacy-policy" className="hover:text-indigo-600">Privacy Policy</Link></li>
   
                 <li><a className="hover:text-indigo-600">Terms of Service</a></li>
   
@@ -159,7 +136,7 @@ const Footer = () => {
                 className="input input-bordered w-full lg:w-80"
               />
   
-              <button className="btn btn-primary rounded-full px-8">
+              <button className="btn btn-secondary rounded-full px-8">
                 Subscribe
               </button>
   

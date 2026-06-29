@@ -15,7 +15,7 @@ const Hero = () => {
       <p className="mb-5 text-lg">
        Devconnect is a community for developers to connect, share ideas, solve problems, and build the future together.
       </p>
-      <button className="btn btn-primary">Get Started</button>
+      <button className="btn btn-secondary">Get Started</button>
     </div>
   </div>
 </div>

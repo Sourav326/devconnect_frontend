@@ -6,9 +6,10 @@ import {
     Menu,
     LogOut 
 } from 'lucide-react';
+import { Link } from 'react-router';
 
 const Navbar = () => {
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-xl shadow-sm">
@@ -27,13 +28,11 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[100] w-64 rounded-2xl bg-white p-3 shadow-xl border border-gray-200"
             >
-              <li><a className='text-slate-600'>Home</a></li>
-              <li><a className='text-slate-600'>Discover</a></li>
-              <li><a className='text-slate-600'>Developers</a></li>
-              <li><a className='text-slate-600'>Projects</a></li>
-              <li><a className='text-slate-600'>Communities</a></li>
-              <li><a className='text-slate-600'>Events</a></li>
-              <li><a className='text-slate-600'>Jobs</a></li>
+              <li><Link to="/" className='text-slate-600'>Home</Link></li>
+              <li><Link to="/discover" className='text-slate-600'>Discover Developers</Link></li>
+              <li><Link to="/projects" className='text-slate-600'>Find Projects</Link></li>
+              <li><Link to="/events" className='text-slate-600'>Events</Link></li>
+              <li><Link to="/jobs" className='text-slate-600'>Jobs</Link></li>
 
               <div className="divider my-2"></div>
 
@@ -43,73 +42,63 @@ const Navbar = () => {
             </ul>
           </div>
 
-          <div className="w-11 h-11 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-lg shadow-md">
-            {"</>"}
-          </div>
+          <Link to="/">
+            <div className="w-11 h-11 rounded-xl bg-secondary text-white flex items-center justify-center font-bold text-lg shadow-md">
+              {"</>"}
+            </div>
+          </Link>
 
-          <div>
-            <h2 className="font-bold text-xl text-slate-800">
-              DevConnect
-            </h2>
+          <Link to="/">
+            <div>
+              <h2 className="font-bold text-xl text-slate-800">
+                DevConnect
+              </h2>
 
-            <p className="text-xs text-slate-500">
-              Developer Community
-            </p>
-          </div>
+              <p className="text-xs text-slate-500">
+                Developer Community
+              </p>
+            </div>
+          </Link>
         </div>
 
         {/* Desktop Menu */}
 
         <nav className="hidden lg:flex items-center gap-8">
 
-          <a
-            href="#"
-            className="font-semibold text-indigo-600 border-b-2 border-indigo-600 pb-1"
+          <Link
+            to="/"
+            className="font-semibold text-secondary border-b-2 border-secondary pb-1"
           >
             Home
-          </a>
+          </Link>
 
-          <a
-            href="#"
-            className="font-medium text-slate-600 hover:text-indigo-600 transition"
+          <Link
+            to="/discover"
+            className="font-medium text-slate-600 hover:text-secondary transition"
           >
-            Discover
-          </a>
+            Discover Developers
+          </Link>
 
-          <a
-            href="#"
-            className="font-medium text-slate-600 hover:text-indigo-600 transition"
+          <Link
+            to="/projects"
+            className="font-medium text-slate-600 hover:text-secondary transition"
           >
-            Developers
-          </a>
+            Find Projects
+          </Link>
 
-          <a
-            href="#"
-            className="font-medium text-slate-600 hover:text-indigo-600 transition"
-          >
-            Projects
-          </a>
-
-          <a
-            href="#"
-            className="font-medium text-slate-600 hover:text-indigo-600 transition"
-          >
-            Communities
-          </a>
-
-          <a
-            href="#"
-            className="font-medium text-slate-600 hover:text-indigo-600 transition"
+          <Link
+            to="/events"
+            className="font-medium text-slate-600 hover:text-secondary transition"
           >
             Events
-          </a>
+          </Link>
 
-          <a
-            href="#"
-            className="font-medium text-slate-600 hover:text-indigo-600 transition"
+          <Link
+            to="/jobs"
+            className="font-medium text-slate-600 hover:text-secondary transition"
           >
             Jobs
-          </a>
+          </Link>
 
         </nav>
 
@@ -130,7 +119,7 @@ const Navbar = () => {
                   <img
                     src="https://i.pravatar.cc/150?img=12"
                     alt=""
-                    className="w-11 h-11 rounded-full border-2 border-indigo-500 object-cover"
+                    className="w-11 h-11 rounded-full border-2 border-secondary object-cover"
                   />
 
                   <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white"></span>
@@ -218,11 +207,11 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <button className="btn btn-ghost rounded-full">
-                Login
-              </button>
+            <button className="btn bg-black text-white border-black rounded-full">
+              Login
+            </button>
 
-              <button className="btn btn-primary rounded-full px-6">
+              <button className="btn btn-secondary rounded-full px-6">
                 Join Free
               </button>
             </>
