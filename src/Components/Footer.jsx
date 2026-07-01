@@ -1,5 +1,9 @@
-import { Link } from "react-router";
+import { Link,NavLink } from "react-router";
 const Footer = () => {
+  const navLinkClass = ({ isActive }) =>
+  isActive
+    ? "text-secondary border-b-2 border-secondary font-semibold pb-1"
+    : "text-slate-600 hover:text-secondary font-medium transition";
     return (
       <footer className="bg-slate-50 border-t border-slate-200 pt-10">
         <div className="max-w-7xl mx-auto px-6 py-14">
@@ -35,27 +39,27 @@ const Footer = () => {
               <ul className="space-y-3 text-gray-600">
   
                 <li>
-                  <Link to="/discover" className="hover:text-indigo-600">
+                  <NavLink to="/discover" className={navLinkClass}>
                     Discover Developers
-                  </Link>
+                  </NavLink>
                 </li>
   
                 <li>
-                  <Link to="/projects" className="hover:text-indigo-600">
+                  <NavLink to="/projects" className={navLinkClass}>
                     Find Projects
-                  </Link>
+                  </NavLink>
                 </li>
   
                 <li>
-                  <Link to="/events" className="hover:text-indigo-600">
+                  <NavLink to="/events" className={navLinkClass}>
                     Events
-                  </Link>
+                  </NavLink>
                 </li>
   
                 <li>
-                  <Link to="/jobs" className="hover:text-indigo-600">
+                  <NavLink to="/jobs" className={navLinkClass}>
                     Jobs
-                  </Link>
+                  </NavLink>
                 </li>
   
               </ul>
@@ -96,15 +100,15 @@ const Footer = () => {
   
               <ul className="space-y-3 text-gray-600">
   
-                <li><Link to="/about" className="hover:text-indigo-600">About</Link></li>
+                <li><NavLink to="/about" className={navLinkClass}>About</NavLink></li>
   
-                <li><a className="hover:text-indigo-600">Contact</a></li>
+                <li><a className={navLinkClass}>Contact</a></li>
   
-                <li><Link to="privacy-policy" className="hover:text-indigo-600">Privacy Policy</Link></li>
+                <li><NavLink to="privacy-policy" className={navLinkClass}>Privacy Policy</NavLink></li>
   
-                <li><a className="hover:text-indigo-600">Terms of Service</a></li>
+                <li><a className={navLinkClass}>Terms of Service</a></li>
   
-                <li><a className="hover:text-indigo-600">Support</a></li>
+                <li><a className={navLinkClass}>Support</a></li>
   
               </ul>
   

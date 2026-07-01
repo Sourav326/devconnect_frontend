@@ -6,10 +6,16 @@ import {
     Menu,
     LogOut 
 } from 'lucide-react';
-import { Link } from 'react-router';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link, NavLink } from 'react-router';
 
 const Navbar = () => {
-  const isLoggedIn = false;
+  const user = useSelector((store) => store.user)//subscribe the redux store
+  const navLinkClass = ({ isActive }) =>
+  isActive
+    ? "text-secondary border-b-2 border-secondary font-semibold pb-1"
+    : "text-slate-600 hover:text-secondary font-medium transition";
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-xl shadow-sm">
@@ -28,17 +34,16 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[100] w-64 rounded-2xl bg-white p-3 shadow-xl border border-gray-200"
             >
-              <li><Link to="/" className='text-slate-600'>Home</Link></li>
-              <li><Link to="/discover" className='text-slate-600'>Discover Developers</Link></li>
-              <li><Link to="/projects" className='text-slate-600'>Find Projects</Link></li>
-              <li><Link to="/events" className='text-slate-600'>Events</Link></li>
-              <li><Link to="/jobs" className='text-slate-600'>Jobs</Link></li>
+              <li><NavLink to="/discover" className={navLinkClass}>Discover Developers</NavLink></li>
+              <li><NavLink to="/projects" className={navLinkClass}>Find Projects</NavLink></li>
+              <li><NavLink to="/events" className={navLinkClass}>Events</NavLink></li>
+              <li><NavLink to="/jobs" className={navLinkClass}>Jobs</NavLink></li>
 
               <div className="divider my-2"></div>
 
-              <li><a className='text-slate-600'>Profile</a></li>
-              <li><a className='text-slate-600'>Settings</a></li>
-              <li><a className="text-red-500">Logout</a></li>
+              <li><NavLink className={navLinkClass}>Profile</NavLink></li>
+              <li><NavLink className={navLinkClass}>Settings</NavLink></li>
+              <li><Link className="text-red-500">Logout</Link></li>
             </ul>
           </div>
 
@@ -64,41 +69,33 @@ const Navbar = () => {
         {/* Desktop Menu */}
 
         <nav className="hidden lg:flex items-center gap-8">
-
-          <Link
-            to="/"
-            className="font-semibold text-secondary border-b-2 border-secondary pb-1"
-          >
-            Home
-          </Link>
-
-          <Link
+          <NavLink
             to="/discover"
-            className="font-medium text-slate-600 hover:text-secondary transition"
+            className={navLinkClass}
           >
             Discover Developers
-          </Link>
+          </NavLink>
 
-          <Link
+          <NavLink
             to="/projects"
-            className="font-medium text-slate-600 hover:text-secondary transition"
+            className={navLinkClass}
           >
             Find Projects
-          </Link>
+          </NavLink>
 
-          <Link
+          <NavLink
             to="/events"
-            className="font-medium text-slate-600 hover:text-secondary transition"
+            className={navLinkClass}
           >
             Events
-          </Link>
+          </NavLink>
 
-          <Link
+          <NavLink
             to="/jobs"
-            className="font-medium text-slate-600 hover:text-secondary transition"
+            className={navLinkClass}
           >
             Jobs
-          </Link>
+          </NavLink>
 
         </nav>
 
@@ -106,26 +103,25 @@ const Navbar = () => {
 
         <div className="flex items-center gap-3">
 
-          {isLoggedIn ? (
+          {user ? (
             <>
               {/* Avatar */}
-
+              <p className="md:block hidden">Welcome {user.firstName}</p>
               <div className="dropdown dropdown-end">
 
                 <div
                   tabIndex={0}
                   className="relative cursor-pointer"
                 >
+                  
                   <img
-                    src="https://i.pravatar.cc/150?img=12"
+                    src={user.profilePictures[0]}
                     alt=""
                     className="w-11 h-11 rounded-full border-2 border-secondary object-cover"
                   />
 
                   <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white"></span>
-
                 </div>
-
                 <ul
                   tabIndex={0}
                   className="menu dropdown-content mt-4 w-72 rounded-2xl bg-white p-3 shadow-2xl border border-gray-200 z-[100]"
@@ -133,21 +129,20 @@ const Navbar = () => {
                   <li className="pointer-events-none mb-3">
 
                     <div className="flex gap-3">
-
                       <img
-                        src="https://i.pravatar.cc/150?img=12"
+                        src={user.profilePictures[0]}
                         className="w-14 h-14 rounded-full"
                         alt=""
                       />
 
                       <div>
 
-                        <p className="font-bold text-gray-800">
-                          John Carter
+                        <p className="font-bold text-gray-800 capitalize">
+                          {user.firstName} {user.lastName}
                         </p>
 
-                        <p className="text-sm text-gray-500">
-                          Full Stack Developer
+                        <p className="text-sm text-gray-500 capitalize">
+                          {user.occupation}
                         </p>
 
                         <div className="badge badge-success badge-sm mt-2">
@@ -212,7 +207,7 @@ const Navbar = () => {
             </button>
             </Link>
 
-              <button className="btn btn-secondary rounded-full px-6">
+              <button className="btn btn-secondary rounded-full px-6 hidden md:block">
                 Join Free
               </button>
             </>

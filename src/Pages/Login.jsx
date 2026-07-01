@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import {
     Eye,
     EyeOff,
@@ -7,18 +7,43 @@ import {
     Lock,
     Code2,
   } from "lucide-react";
+import axios from 'axios'
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
+import { BASE_URL } from "../utils/constants";
 
 const Login = () => {
+  const dispatch = useDispatch()
   const [showPassword, setShowPassword] = useState(false);
+  const [email,setEmail] = useState("")
+  const [password,setPassword] = useState("")
+  const [isloading,setIsLoading] = useState(false)
+  const navigate = useNavigate();
+  const handleLogin = async () => {
+    setIsLoading(true);
+    try{
+        const response = await axios.post(BASE_URL + '/login', {
+            email,
+            password
+          },
+          {withCredentials:true}//enable to set the token in cookie
+          );
+          console.log(response.data.data);
+          dispatch(addUser(response.data.data))
+          navigate('/discover')
+    }catch(err){
+        console.log(err);
+    }
+  }
 
   return (
+    
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-violet-50 flex items-center justify-center px-5 py-10">
-
       <div className="w-full max-w-7xl bg-white rounded-[40px] shadow-2xl overflow-hidden grid lg:grid-cols-2">
 
         {/* ================= LEFT ================= */}
 
-        <div className="hidden lg:flex relative bg-gradient-to-br from-indigo-600 via-violet-600 to-indigo-700 p-16 text-white flex-col justify-between overflow-hidden">
+        <div className="hidden lg:flex relative bg-gradient-to-br from-secondary via-fuchsia-600 to-pink-700 p-16 text-white flex-col justify-between overflow-hidden">
 
           <div className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-white/10"></div>
           <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-white/10"></div>
@@ -29,7 +54,7 @@ const Login = () => {
 
               <div className="h-14 w-14 rounded-2xl bg-white flex items-center justify-center shadow-lg">
 
-                <Code2 className="h-8 w-8 text-indigo-600" />
+                <Code2 className="h-8 w-8 text-secondary" />
 
               </div>
 
@@ -132,6 +157,8 @@ const Login = () => {
 
                   <input
                     type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
                     className="input input-bordered w-full pl-12 h-14 rounded-xl focus:border-indigo-500"
                   />
@@ -154,6 +181,8 @@ const Login = () => {
 
                   <input
                     type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
                     className="input input-bordered w-full pl-12 pr-12 h-14 rounded-xl focus:border-indigo-500"
                   />
@@ -205,10 +234,11 @@ const Login = () => {
 {/* Login Button */}
 
 <button
-type="submit"
+type="button"
+onClick={handleLogin}
 className="btn btn-primary w-full h-14 rounded-xl text-base font-semibold shadow-lg hover:scale-[1.02] transition-all duration-300"
 >
-Login
+{isloading?'Submitting...':'Login'}
 </button>
 
 {/* Divider */}
@@ -225,7 +255,7 @@ OR CONTINUE WITH
 
 <button
   type="button"
-  className="btn bg-white border border-slate-300 hover:bg-slate-50 rounded-xl h-14"
+  className="btn bg-white text-gray-700 border border-slate-300 hover:bg-slate-50 rounded-xl h-14"
 >
 
   <img

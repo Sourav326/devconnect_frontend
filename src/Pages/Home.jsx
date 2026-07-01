@@ -1,5 +1,5 @@
-import Hero from "./Hero"
-import Reviews from "./Reviews"
+import Hero from "../Components/Hero"
+import Reviews from "../Components/Reviews"
 const Home = () => {
     return(
         <>
